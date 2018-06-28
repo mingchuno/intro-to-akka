@@ -5,9 +5,12 @@ version := "1.0"
 scalaVersion := "2.12.6"
 
 lazy val akkaVersion = "2.5.13"
+lazy val playWsStandaloneVersion = "1.1.9"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion,
+  "com.typesafe.play" %% "play-ahc-ws-standalone" % playWsStandaloneVersion,
+  "com.typesafe.play" %% "play-ws-standalone-json" % playWsStandaloneVersion,
   "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 )
