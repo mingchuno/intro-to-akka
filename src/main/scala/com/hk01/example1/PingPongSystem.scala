@@ -1,4 +1,4 @@
-package com.hk01
+package com.hk01.example1
 
 import akka.actor.CoordinatedShutdown.JvmExitReason
 import akka.actor.{Actor, ActorLogging, ActorSystem, CoordinatedShutdown, Props}

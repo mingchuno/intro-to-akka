@@ -1,4 +1,4 @@
-package com.hk01
+package com.hk01.example2
 
 import akka.actor.CoordinatedShutdown.JvmExitReason
 import akka.actor.{Actor, ActorLogging, ActorSystem, CoordinatedShutdown, Props}
@@ -19,7 +19,7 @@ object PingPongWithCountSystem extends App {
 
 class PongActorWithCount extends Actor with ActorLogging {
   // mutable here! It is safe to use mutable here!!
-  // for those have OCD like me, we can solve it later!!!
+  // for those have OCD like me, we can fix it later!!!
   var count = 0
   override def receive = {
     case Ping =>
@@ -30,3 +30,13 @@ class PongActorWithCount extends Actor with ActorLogging {
 
 sealed trait Data
 case object Ping extends Data
+
+// 車，Javascript都得啦
+// const getClosure = () => {
+//   let count = 0
+//   return () => {
+//     count += 1
+//     console.log(`pong with count ${count}`)
+//   }
+// }
+// setInterval(getClosure(), 1000)
