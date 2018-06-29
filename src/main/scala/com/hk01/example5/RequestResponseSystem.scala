@@ -17,9 +17,6 @@ object RequestResponseSystem extends App {
 
   system.scheduler.scheduleOnce(1 second) {
     clientActor ! "start"
-    clientActor ! "start"
-    clientActor ! "start"
-    clientActor ! "start"
   }
 
   // shutdown
@@ -35,6 +32,14 @@ class ClientActor extends Actor with ActorLogging {
   implicit val timeout = Timeout(10 seconds)
   implicit val ec = context.dispatcher
 
+  override def preStart() = {
+    log.info("ClientActor preStart...")
+  }
+
+  override def postStop() = {
+    log.info("ClientActor postStop...")
+  }
+
   override def receive = {
     case "start" =>
       for {
@@ -47,6 +52,15 @@ class ClientActor extends Actor with ActorLogging {
 }
 
 class TimeServerActor extends Actor with ActorLogging {
+
+  override def preStart() = {
+    log.info("TimeServerActor preStart...")
+  }
+
+  override def postStop() = {
+    log.info("TimeServerActor postStop...")
+  }
+
   override def receive = {
     case Time =>
       sender() ! TimeResponse(System.currentTimeMillis())
@@ -59,7 +73,12 @@ class APIServerActor extends Actor with ActorLogging {
   implicit val materializer = ActorMaterializer()
   val wsClient = StandaloneAhcWSClient()
 
+  override def preStart() = {
+    log.info("APIServerActor preStart...")
+  }
+
   override def postStop() = {
+    log.info("APIServerActor postStop...")
     log.info("closing client...")
     wsClient.close()
   }
