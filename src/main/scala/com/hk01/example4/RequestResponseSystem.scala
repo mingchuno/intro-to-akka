@@ -11,7 +11,7 @@ import akka.util.Timeout
 import play.api.libs.json.JsValue
 
 object RequestResponseSystem extends App {
-  val system = ActorSystem("ClientServerSystem")
+  val system = ActorSystem("RequestResponseSystem")
   implicit val ec = system.dispatcher
   val clientActor =  system.actorOf(Props[ClientActor], "client-actor")
 
